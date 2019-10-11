@@ -1,1 +1,1 @@
-select account_description, count(*) as line_item_count, sum(line_item_amt) as line_item_amt_sum from general_ledger_accounts g1 join invoice_line_items li on g1.account_number = li.account_number group by g1.account_description having count(*) > 1 order by line_item_amt_sum desc
+select account_description, count(*) as line_item_count, sum(line_item_amt) as line_item_amt_sum from general_ledger_accounts gla join invoice_line_items ili on gla.account_number = ili.account_number group by gla.account_description having count(*) > 1 order by line_item_amt_sum desc
