@@ -1,0 +1,1 @@
+select vendor_name,	count(*) as invoice_count, sum(invoice_total) as invoice_total_sum from vendors v join invoices i on v.vendor_id = i.vendor_id group by vendor_name order by invoice_count desc
