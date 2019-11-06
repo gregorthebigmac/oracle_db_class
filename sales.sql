@@ -7,7 +7,6 @@ create table sales_test (
 	keyword_2_hits int,
 	keyword_3_hits int,
 	keyword_4_hits int,
-	studpi_shit;
 	keyword_5_hits int,
 	keyword_6_hits int,
 	views_sales_ratio float,
