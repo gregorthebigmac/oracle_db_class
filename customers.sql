@@ -1,5 +1,5 @@
-create table amazon_test (
-	customer_id int not null,
+create table customer_test (
+	customer_id int primary key,
 	first_name char(50) not null,
 	last_name char(50) not null,
 	email char(255),
@@ -15,5 +15,4 @@ create table amazon_test (
 	credit_card char(19),
 	cvv_code char(4),
 	paypal_account char(255),
-	primary key (customer_id)
 );

@@ -1,6 +1,6 @@
 # Data to go in the Customers Table
 
-1. customer_id
+1. customer_id (unique)
 2. first_name
 3. last_name
 4. email
@@ -14,3 +14,11 @@
 12. password_hashed
 13. credit_card
 14. paypal_account
+15. history_purchased_items
+16. shopping_cart_contents
+
+## TODO
+
+1. Add table for reviews made by the customer
+2. Add table for items in each user's shopping cart
+3. Add sub-table for items in user's purchase history.
