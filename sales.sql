@@ -15,5 +15,5 @@ create table sales_test (
 	similar_product_after_viewing_3 bigint references product_test(product_id),
 	similar_product_after_viewing_4 bigint references product_test(product_id),
 	similar_product_after_viewing_5 bigint references product_test(product_id),
-	similar_product_after_viewing_6 bigint references product_test(product_id),
-)
+	similar_product_after_viewing_6 bigint references product_test(product_id
+);

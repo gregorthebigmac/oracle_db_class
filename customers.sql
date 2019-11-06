@@ -14,5 +14,5 @@ create table customer_test (
 	password_hashed char(255) not null,
 	credit_card char(19),
 	cvv_code char(4),
-	paypal_account char(255),
+	paypal_account char(255)
 );
