@@ -22,4 +22,3 @@ create table product_test (
 	related_product_5 int references product_test(product_id),
 	related_product_6 int references product_test(product_id)
 );
-don't run this
