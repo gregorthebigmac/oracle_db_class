@@ -6,9 +6,9 @@
 4. number of customers who have purchased product
 5. keyword_1 hits (i.e. the number of times a keyword brought someone to this product, who then purchased it)
 6. keyword_2 hits
-7. keyword 3 hits
-8. keyword 4 hits
-9. keyword 5 hits
-10. keyword 6 hits
+7. keyword_3 hits
+8. keyword_4 hits
+9. keyword_5 hits
+10. keyword_6 hits
 11. percentage of page views to units sold
 12. similar products purchased after viewing this product (foreign key)
