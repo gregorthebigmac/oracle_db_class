@@ -1,9 +1,9 @@
 create table product_test (
 	product_id int primary key,
-	item_description char not null,
+	item_description varchar not null,
 	item_price decimal(19,4) not null,
 	item_shipping decimal(19,4),
-	item_specs char,
+	item_specs varchar,
 	star_char char(1) not null,
 	star_value decimal(19,4) not null,
 	/* TODO: add table for search keywords */
@@ -23,26 +23,24 @@ create table product_test (
 	related_product_6 int references product_test(product_id)
 );
 
-insert into product_test values  (
-	'8',
+insert into product_test values (
+	'1',
 	'Watch',
 	'99.99',
 	'4.99',
 	NULL,
 	'5',
-	'5',
+	'5.64',
 	'Gold,
 	"Frugal',
 	NULL,
 	NULL,
 	NULL,
-	NULL,
 	'Jewelry',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	1,
+	2,
+	3,
+	4,
+	5,
+	6
 );
-

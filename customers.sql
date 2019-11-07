@@ -24,16 +24,16 @@ insert into customer_test values (
 	'12345@gmail.com',
 	'312-555-5654',
 	'1232',
-	'Apt 5',
+	'5B',
 	'Carpenter',
 	'Chicago',
 	'IL',
 	'60007',
 	'USA',
-	'*****',
-	'5555-5555-5555',
+	'po3-8y9h8uw9pg4shieghi;ty8e4',
+	'1234567890123456',
 	'324',
-	'jjackson32'
+	'jjackson32@hotmail.com'
 );
 
 insert into customer_test values (
@@ -43,14 +43,14 @@ insert into customer_test values (
 	'bendover69@gmail.com',
 	'223-575-5354',
 	'4578',
-	'Apt 9',
+	'9A',
 	'Artesian',
 	'Chicago',
 	'IL',
 	'6032',
 	'USA',
 	'gqpoihoep95w8gsgoihtroewa987alsoigoewirhglusa',
-	'555-555-5555',
+	'1234567890123456',
 	'590',
-	'Bendover69'
+	'Bendover69@compuserve.com'
 );
