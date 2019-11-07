@@ -16,3 +16,22 @@ create table customer_test (
 	cvv_code char(4),
 	paypal_account char(255)
 );
+
+INSERT INTO CUSTOMER_TEST VALUES (
+	'2',
+	'Ben',
+	'Dover',
+	'bendover69@gmail.com',
+	'223-575-5354',
+	'4578',
+	'Apt 9',
+	'Artesian',
+	'Chicago',
+	'IL',
+	'6032',
+	'USA',
+	'gqpoihoep95w8gsgoihtroewa987alsoigoewirhglusa',
+	'555-555-5555',
+	'590',
+	'Bendover69'
+);
