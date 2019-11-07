@@ -22,3 +22,27 @@ create table product_test (
 	related_product_5 int references product_test(product_id),
 	related_product_6 int references product_test(product_id)
 );
+
+insert into product_test values  (
+	'8',
+	'Watch',
+	'99.99',
+	'4.99',
+	NULL,
+	'5',
+	'5',
+	'Gold,
+	"Frugal',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	'Jewelry',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
+

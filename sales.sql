@@ -17,3 +17,42 @@ create table sales_test (
 	sim_product_after_viewing_5 int references product_test(product_id),
 	sim_product_after_viewing_6 int references product_test(product_id)
 );
+
+insert into sales_test values (
+	'4',
+	'1',
+	'49.99',
+	'1',
+	'4',
+	'5',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	'22.34',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+);
+
+insert into sales_test values (
+	'8',
+	'1',
+	'99.99',
+	'16',
+	'9',
+	'8',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	'32.42',
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL);

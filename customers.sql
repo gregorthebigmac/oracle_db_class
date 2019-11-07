@@ -17,7 +17,26 @@ create table customer_test (
 	paypal_account char(255)
 );
 
-INSERT INTO CUSTOMER_TEST VALUES (
+insert into customer_test values (
+	'1',
+	'John',
+	'Jackson',
+	'12345@gmail.com',
+	'312-555-5654',
+	'1232',
+	'Apt 5',
+	'Carpenter',
+	'Chicago',
+	'IL',
+	'60007',
+	'USA',
+	'*****',
+	'5555-5555-5555',
+	'324',
+	'jjackson32'
+);
+
+insert into customer_test values (
 	'2',
 	'Ben',
 	'Dover',
