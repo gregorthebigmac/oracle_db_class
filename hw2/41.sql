@@ -75,7 +75,7 @@ create public synonym terms for ap.terms;
 connect ap/ap;
 alter user john password expire;
 alter user jane password expire;
-alter juser jim password expire;
+alter user jim password expire;
 alter user joel password expire;
 
 connect ap/ap;

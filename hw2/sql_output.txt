@@ -1,0 +1,1150 @@
+SQL> connect c##ap/ap
+Connected.
+SQL> begin
+  2  execute immediate 'drop user john';
+  3  execute immediate 'drop user jane';
+  4  execute immediate 'drop user jim';
+  5  execute immediate 'drop user joel cascade';
+  6  execute immediate 'drop role ap_user';
+  7  execute immediate 'drop role ap_manager';
+  8  execute immediate 'drop role ap_developer';
+  9  execute immediate 'drop public synonym vendors';
+ 10  execute immediate 'drop public synonym invoices';
+ 11  execute immediate 'drop public synonym invoice_line_items';
+ 12  execute immediate 'drop public synonym general_ledger_accounts';
+ 13  execute immediate 'drop public synonym terms';
+ 14  exception when others then
+ 15  dbms_output.put_line('');
+ 16  end;
+ 17  /
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> -- create the roles
+SQL> create role ap_user;
+
+Role created.
+
+SQL> create role ap_manager;
+
+Role created.
+
+SQL> create role ap_developer;
+
+Role created.
+
+SQL>
+SQL> -- grant privileges to teh ap_user role
+SQL> grant create session to ap_user;
+
+Grant succeeded.
+
+SQL> grant create public synonym to ap_user;
+
+Grant succeeded.
+
+SQL> grant all on vendors to ap_user;
+
+Grant succeeded.
+
+SQL> grant select, insert, update, delete on invoices to ap_user;
+
+Grant succeeded.
+
+SQL> grant select, insert, update, delete on invoice_line_items to ap_user;
+
+Grant succeeded.
+
+SQL> grant select on general_ledger_accounts to ap_user;
+
+Grant succeeded.
+
+SQL> grant select on terms to ap_user;
+
+Grant succeeded.
+
+SQL> grant select on invoice_id_seq to ap_user;
+
+Grant succeeded.
+
+SQL> grant select on vendor_id_seq to ap_user;
+
+Grant succeeded.
+
+SQL>
+SQL> -- grant privileges to the ap_manager role
+SQL> grant ap_user to ap_manager with admin option;
+
+Grant succeeded.
+
+SQL> grant all on general_ledger_accounts to ap_manager;
+
+Grant succeeded.
+
+SQL> grant all on terms to ap_manager;
+
+Grant succeeded.
+
+SQL>
+SQL> -- grant privileges to the ap_developer role
+SQL> grant
+  2  ap_manager,
+  3  create any table,
+  4  drop any table,
+  5  create any view,
+  6  drop any view,
+  7  create any sequence,
+  8  drop any sequence
+  9  to ap_developer;
+
+Grant succeeded.
+
+SQL>
+SQL> -- create the users
+SQL> create user john identified by sesame default tablespace users;
+
+User created.
+
+SQL> create user jane identified by sesame default tablespace users;
+
+User created.
+
+SQL> create user jim identified by sesame default tablespace users;
+
+User created.
+
+SQL> create user joel identified by sesame default tablespace users;
+
+User created.
+
+SQL>
+SQL> -- assign the users to their roles
+SQL> grant ap_user to john, jane;
+
+Grant succeeded.
+
+SQL> grant ap_manager to jim;
+
+Grant succeeded.
+
+SQL> grant ap_developer to joel;
+
+Grant succeeded.
+
+SQL>
+SQL> -- allow joel to create tables
+SQL> alter user joel quota 10M on users;
+
+User altered.
+
+SQL> connect joel/sesame;
+Connected.
+SQL> create public synonym vendors for ap.vendors;
+
+Synonym created.
+
+SQL> create public synonym invoices for ap.invoices;
+
+Synonym created.
+
+SQL> create public synonym invoice_line_items for ap.invoice_line_items;
+
+Synonym created.
+
+SQL> create public synonym general_ledger_accounts for ap.general_ledger_accounts;
+
+Synonym created.
+
+SQL> create public synonym terms for ap.terms;
+
+Synonym created.
+
+SQL> connect c##ap/ap
+Connected.
+SQL> alter user john password expire;
+
+User altered.
+
+SQL> alter user jane password expire;
+
+User altered.
+
+SQL> alter user jim password expire;
+
+User altered.
+
+SQL> alter user joel password expire;
+
+User altered.
+
+SQL> grant create procedure to john;
+
+Grant succeeded.
+
+SQL> grant select on vendors to john;
+
+Grant succeeded.
+
+SQL> select * from user_sys_privs;
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          UPDATE ANY CUBE DIMENSION                NO
+C##AP                          UPDATE ANY CUBE BUILD PROCESS            NO
+C##AP                          DELETE ANY MEASURE FOLDER                NO
+C##AP                          CREATE ANY MEASURE FOLDER                NO
+C##AP                          ALTER ANY CUBE                           NO
+C##AP                          ALTER ANY CUBE DIMENSION                 NO
+C##AP                          CREATE CUBE DIMENSION                    NO
+C##AP                          CREATE ANY MINING MODEL                  NO
+C##AP                          CREATE MINING MODEL                      NO
+C##AP                          CREATE ANY ASSEMBLY                      NO
+C##AP                          CREATE ANY JOB                           NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          ALTER ANY RULE SET                       NO
+C##AP                          ALTER ANY EVALUATION CONTEXT             NO
+C##AP                          CREATE ANY EVALUATION CONTEXT            NO
+C##AP                          DEQUEUE ANY QUEUE                        NO
+C##AP                          GLOBAL QUERY REWRITE                     NO
+C##AP                          EXECUTE ANY OPERATOR                     NO
+C##AP                          DROP ANY LIBRARY                         NO
+C##AP                          UNDER ANY TYPE                           NO
+C##AP                          ALTER RESOURCE COST                      NO
+C##AP                          DROP PROFILE                             NO
+C##AP                          ALTER PROFILE                            NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE TRIGGER                           NO
+C##AP                          ALTER DATABASE                           NO
+C##AP                          SELECT ANY SEQUENCE                      NO
+C##AP                          DROP ANY SEQUENCE                        NO
+C##AP                          CREATE ANY SYNONYM                       NO
+C##AP                          MANAGE TABLESPACE                        NO
+C##AP                          ALTER SYSTEM                             NO
+C##AP                          ALTER ANY MINING MODEL                   NO
+C##AP                          SELECT ANY MINING MODEL                  NO
+C##AP                          DROP ANY EDITION                         NO
+C##AP                          CREATE ANY EDITION                       NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          MANAGE SCHEDULER                         NO
+C##AP                          DROP ANY RULE                            NO
+C##AP                          CREATE ANY RULE SET                      NO
+C##AP                          ALTER ANY DIMENSION                      NO
+C##AP                          DROP ANY INDEXTYPE                       NO
+C##AP                          ALTER ANY INDEXTYPE                      NO
+C##AP                          CREATE ANY OPERATOR                      NO
+C##AP                          CREATE LIBRARY                           NO
+C##AP                          ALTER ANY MATERIALIZED VIEW              NO
+C##AP                          AUDIT ANY                                NO
+C##AP                          DROP PUBLIC DATABASE LINK                NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE PUBLIC DATABASE LINK              NO
+C##AP                          CREATE ANY SEQUENCE                      NO
+C##AP                          DELETE ANY TABLE                         NO
+C##AP                          UNLIMITED TABLESPACE                     NO
+C##AP                          ADMINISTER SQL MANAGEMENT OBJECT         NO
+C##AP                          CREATE ANY CUBE BUILD PROCESS            NO
+C##AP                          SELECT ANY CUBE                          NO
+C##AP                          CREATE CUBE                              NO
+C##AP                          DROP ANY ASSEMBLY                        NO
+C##AP                          CREATE ASSEMBLY                          NO
+C##AP                          SELECT ANY TRANSACTION                   NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          EXECUTE ANY RULE                         NO
+C##AP                          EXPORT FULL DATABASE                     NO
+C##AP                          EXECUTE ANY EVALUATION CONTEXT           NO
+C##AP                          ENQUEUE ANY QUEUE                        NO
+C##AP                          CREATE DIMENSION                         NO
+C##AP                          UNDER ANY VIEW                           NO
+C##AP                          CREATE ANY TYPE                          NO
+C##AP                          CREATE TYPE                              NO
+C##AP                          CREATE MATERIALIZED VIEW                 NO
+C##AP                          ANALYZE ANY                              NO
+C##AP                          ALTER ANY TRIGGER                        NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE SEQUENCE                          NO
+C##AP                          CREATE ANY VIEW                          NO
+C##AP                          CREATE SYNONYM                           NO
+C##AP                          DROP ANY CLUSTER                         NO
+C##AP                          UPDATE ANY TABLE                         NO
+C##AP                          SELECT ANY TABLE                         NO
+C##AP                          BACKUP ANY TABLE                         NO
+C##AP                          CREATE TABLESPACE                        NO
+C##AP                          ALTER SESSION                            NO
+C##AP                          AUDIT SYSTEM                             NO
+C##AP                          COMMENT ANY MINING MODEL                 NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          EXECUTE ANY ASSEMBLY                     NO
+C##AP                          DROP ANY SQL PROFILE                     NO
+C##AP                          GRANT ANY OBJECT PRIVILEGE               NO
+C##AP                          ADMINISTER RESOURCE MANAGER              NO
+C##AP                          DROP ANY OUTLINE                         NO
+C##AP                          CREATE ANY PROCEDURE                     NO
+C##AP                          CREATE ROLE                              NO
+C##AP                          ALTER ANY SEQUENCE                       NO
+C##AP                          DROP ANY INDEX                           NO
+C##AP                          INSERT ANY TABLE                         NO
+C##AP                          LOCK ANY TABLE                           NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          DROP ROLLBACK SEGMENT                    NO
+C##AP                          ALTER ROLLBACK SEGMENT                   NO
+C##AP                          DROP TABLESPACE                          NO
+C##AP                          CREATE SESSION                           NO
+C##AP                          INSERT ANY MEASURE FOLDER                NO
+C##AP                          CREATE MEASURE FOLDER                    NO
+C##AP                          CREATE ANY CUBE                          NO
+C##AP                          SELECT ANY CUBE DIMENSION                NO
+C##AP                          CREATE ANY CUBE DIMENSION                NO
+C##AP                          EXECUTE ASSEMBLY                         NO
+C##AP                          MANAGE FILE GROUP                        NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          ALTER ANY SQL PROFILE                    NO
+C##AP                          DROP ANY RULE SET                        NO
+C##AP                          DROP ANY EVALUATION CONTEXT              NO
+C##AP                          MERGE ANY VIEW                           NO
+C##AP                          ALTER ANY OUTLINE                        NO
+C##AP                          DROP ANY CONTEXT                         NO
+C##AP                          CREATE ANY CONTEXT                       NO
+C##AP                          DROP ANY DIMENSION                       NO
+C##AP                          CREATE OPERATOR                          NO
+C##AP                          CREATE ANY DIRECTORY                     NO
+C##AP                          GRANT ANY PRIVILEGE                      NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE ANY TRIGGER                       NO
+C##AP                          DROP ANY PROCEDURE                       NO
+C##AP                          CREATE PROCEDURE                         NO
+C##AP                          ALTER ANY ROLE                           NO
+C##AP                          CREATE VIEW                              NO
+C##AP                          DROP PUBLIC SYNONYM                      NO
+C##AP                          DROP ANY SYNONYM                         NO
+C##AP                          ALTER ANY INDEX                          NO
+C##AP                          ALTER ANY CLUSTER                        NO
+C##AP                          COMMENT ANY TABLE                        NO
+C##AP                          DROP ANY TABLE                           NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          ALTER ANY TABLE                          NO
+C##AP                          CREATE ANY TABLE                         NO
+C##AP                          ALTER TABLESPACE                         NO
+C##AP                          FLASHBACK ARCHIVE ADMINISTER             NO
+C##AP                          CREATE CUBE BUILD PROCESS                NO
+C##AP                          DROP ANY MEASURE FOLDER                  NO
+C##AP                          DROP ANY CUBE                            NO
+C##AP                          INSERT ANY CUBE DIMENSION                NO
+C##AP                          DELETE ANY CUBE DIMENSION                NO
+C##AP                          ALTER ANY ASSEMBLY                       NO
+C##AP                          ALTER ANY EDITION                        NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE EXTERNAL JOB                      NO
+C##AP                          CREATE JOB                               NO
+C##AP                          CREATE ANY RULE                          NO
+C##AP                          FLASHBACK ANY TABLE                      NO
+C##AP                          DEBUG ANY PROCEDURE                      NO
+C##AP                          DEBUG CONNECT SESSION                    NO
+C##AP                          MANAGE ANY QUEUE                         NO
+C##AP                          CREATE ANY DIMENSION                     NO
+C##AP                          UNDER ANY TABLE                          NO
+C##AP                          CREATE ANY INDEXTYPE                     NO
+C##AP                          CREATE INDEXTYPE                         NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          ALTER ANY OPERATOR                       NO
+C##AP                          ALTER ANY LIBRARY                        NO
+C##AP                          CREATE ANY LIBRARY                       NO
+C##AP                          DROP ANY TYPE                            NO
+C##AP                          DROP ANY DIRECTORY                       NO
+C##AP                          CREATE ANY MATERIALIZED VIEW             NO
+C##AP                          CREATE PROFILE                           NO
+C##AP                          ALTER ANY PROCEDURE                      NO
+C##AP                          CREATE DATABASE LINK                     NO
+C##AP                          CREATE PUBLIC SYNONYM                    NO
+C##AP                          CREATE ANY INDEX                         NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE CLUSTER                           NO
+C##AP                          CREATE ROLLBACK SEGMENT                  NO
+C##AP                          CREATE USER                              NO
+C##AP                          RESTRICTED SESSION                       NO
+C##AP                          READ ANY FILE GROUP                      NO
+C##AP                          CREATE ANY SQL PROFILE                   NO
+C##AP                          ADMINISTER SQL TUNING SET                NO
+C##AP                          EXECUTE ANY PROGRAM                      NO
+C##AP                          ADVISOR                                  NO
+C##AP                          ALTER ANY RULE                           NO
+C##AP                          EXECUTE ANY RULE SET                     NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          RESUMABLE                                NO
+C##AP                          ADMINISTER DATABASE TRIGGER              NO
+C##AP                          CREATE ANY OUTLINE                       NO
+C##AP                          EXECUTE ANY INDEXTYPE                    NO
+C##AP                          QUERY REWRITE                            NO
+C##AP                          DROP ANY OPERATOR                        NO
+C##AP                          DROP ANY MATERIALIZED VIEW               NO
+C##AP                          DROP ANY TRIGGER                         NO
+C##AP                          EXECUTE ANY PROCEDURE                    NO
+C##AP                          FORCE ANY TRANSACTION                    NO
+C##AP                          FORCE TRANSACTION                        NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE ANY CLUSTER                       NO
+C##AP                          ALTER USER                               NO
+C##AP                          BECOME USER                              NO
+C##AP                          DROP ANY CUBE BUILD PROCESS              NO
+C##AP                          UPDATE ANY CUBE                          NO
+C##AP                          DROP ANY CUBE DIMENSION                  NO
+C##AP                          DROP ANY MINING MODEL                    NO
+C##AP                          CHANGE NOTIFICATION                      NO
+C##AP                          MANAGE ANY FILE GROUP                    NO
+C##AP                          ADMINISTER ANY SQL TUNING SET            NO
+C##AP                          EXECUTE ANY CLASS                        NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE RULE                              NO
+C##AP                          IMPORT FULL DATABASE                     NO
+C##AP                          CREATE RULE SET                          NO
+C##AP                          CREATE EVALUATION CONTEXT                NO
+C##AP                          ON COMMIT REFRESH                        NO
+C##AP                          EXECUTE ANY LIBRARY                      NO
+C##AP                          EXECUTE ANY TYPE                         NO
+C##AP                          ALTER ANY TYPE                           NO
+C##AP                          GRANT ANY ROLE                           NO
+C##AP                          DROP ANY ROLE                            NO
+C##AP                          DROP ANY VIEW                            NO
+
+USERNAME                       PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+C##AP                          CREATE TABLE                             NO
+C##AP                          DROP USER                                NO
+
+200 rows selected.
+
+SQL> select * from user_tab_privs;
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AR_USER                        C##AP
+CUSTOMERS                      C##AP
+INSERT                                   NO  NO
+
+AR_USER                        C##AP
+CUSTOMERS                      C##AP
+SELECT                                   NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+FLASHBACK                                NO  NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+DEBUG                                    NO  NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+QUERY REWRITE                            NO  NO
+
+AP_MANAGER                     C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+GENERAL_LEDGER_ACCOUNTS        C##AP
+ON COMMIT REFRESH                        NO  NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+UPDATE                                   NO  NO
+
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+SELECT                                   NO  NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+INSERT                                   NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+DELETE                                   NO  NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+ALTER                                    NO  NO
+
+AP_USER                        C##AP
+GENERAL_LEDGER_ACCOUNTS        C##AP
+SELECT                                   NO  NO
+
+AP_USER                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+INVOICES                       C##AP
+UPDATE                                   NO  NO
+
+AP_USER                        C##AP
+INVOICES                       C##AP
+SELECT                                   NO  NO
+
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AP_USER                        C##AP
+INVOICES                       C##AP
+INSERT                                   NO  NO
+
+AP_USER                        C##AP
+INVOICES                       C##AP
+DELETE                                   NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_USER                        C##AP
+INVOICE_ID_SEQ                 C##AP
+SELECT                                   NO  NO
+
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS             C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+UPDATE                                   NO  NO
+
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS             C##AP
+SELECT                                   NO  NO
+
+AP_USER                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+INVOICE_LINE_ITEMS             C##AP
+INSERT                                   NO  NO
+
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS             C##AP
+DELETE                                   NO  NO
+
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+FLASHBACK                                NO  NO
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+DEBUG                                    NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+QUERY REWRITE                            NO  NO
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+ON COMMIT REFRESH                        NO  NO
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+UPDATE                                   NO  NO
+
+AP_MANAGER                     C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+TERMS                          C##AP
+SELECT                                   NO  NO
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+INSERT                                   NO  NO
+
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+DELETE                                   NO  NO
+
+AP_MANAGER                     C##AP
+TERMS                          C##AP
+ALTER                                    NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_USER                        C##AP
+TERMS                          C##AP
+SELECT                                   NO  NO
+
+JOHN                           C##AP
+VENDORS                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+SELECT                                   NO  NO
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+FLASHBACK                                NO  NO
+
+AP_USER                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+VENDORS                        C##AP
+DEBUG                                    NO  NO
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+QUERY REWRITE                            NO  NO
+
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+AP_USER                        C##AP
+VENDORS                        C##AP
+ON COMMIT REFRESH                        NO  NO
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+UPDATE                                   NO  NO
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+SELECT                                   NO  NO
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+INSERT                                   NO  NO
+
+AP_USER                        C##AP
+VENDORS                        C##AP
+DELETE                                   NO  NO
+
+AP_USER                        C##AP
+
+GRANTEE                        OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     GRANTOR
+------------------------------ ------------------------------
+PRIVILEGE                                GRA HIE
+---------------------------------------- --- ---
+VENDORS                        C##AP
+ALTER                                    NO  NO
+
+AP_USER                        C##AP
+VENDOR_ID_SEQ                  C##AP
+SELECT                                   NO  NO
+
+
+42 rows selected.
+
+SQL> select * from user_role_privs;
+
+USERNAME                       GRANTED_ROLE                   ADM DEF OS_
+------------------------------ ------------------------------ --- --- ---
+C##AP                          AP_DEVELOPER                   YES YES NO
+C##AP                          AP_MANAGER                     YES YES NO
+C##AP                          AP_USER                        YES YES NO
+C##AP                          AR_USER                        YES YES NO
+
+SQL> select * from role_sys_privs;
+
+ROLE                           PRIVILEGE                                ADM
+------------------------------ ---------------------------------------- ---
+AP_DEVELOPER                   CREATE ANY SEQUENCE                      NO
+AR_USER                        CREATE PUBLIC SYNONYM                    NO
+AP_USER                        CREATE PUBLIC SYNONYM                    NO
+AP_DEVELOPER                   CREATE ANY VIEW                          NO
+AP_DEVELOPER                   DROP ANY VIEW                            NO
+AP_DEVELOPER                   DROP ANY SEQUENCE                        NO
+AP_DEVELOPER                   DROP ANY TABLE                           NO
+AP_DEVELOPER                   CREATE ANY TABLE                         NO
+AR_USER                        CREATE SESSION                           NO
+AP_USER                        CREATE SESSION                           NO
+
+10 rows selected.
+
+SQL> select * from role_tab_privs;
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_USER                        C##AP
+VENDORS
+SELECT                                   NO
+
+AP_USER                        C##AP
+INVOICES
+DELETE                                   NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AP_USER                        C##AP
+INVOICES
+UPDATE                                   NO
+
+AP_USER                        C##AP
+GENERAL_LEDGER_ACCOUNTS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+SELECT                                   NO
+
+AP_USER                        C##AP
+TERMS
+SELECT                                   NO
+
+AP_USER                        C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+VENDOR_ID_SEQ
+SELECT                                   NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+UPDATE                                   NO
+
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_MANAGER                     C##AP
+TERMS
+ALTER                                    NO
+
+AP_MANAGER                     C##AP
+TERMS
+DEBUG                                    NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AR_USER                        C##AP
+CUSTOMERS
+INSERT                                   NO
+
+AP_USER                        C##AP
+VENDORS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+ON COMMIT REFRESH                        NO
+
+AP_USER                        C##AP
+VENDORS
+DEBUG                                    NO
+
+AP_USER                        C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+VENDORS
+FLASHBACK                                NO
+
+AP_USER                        C##AP
+VENDORS
+QUERY REWRITE                            NO
+
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+DELETE                                   NO
+
+AP_MANAGER                     C##AP
+TERMS
+ON COMMIT REFRESH                        NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AP_MANAGER                     C##AP
+TERMS
+QUERY REWRITE                            NO
+
+AP_USER                        C##AP
+VENDORS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+DELETE                                   NO
+
+AR_USER                        C##AP
+CUSTOMERS
+SELECT                                   NO
+
+AP_USER                        C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+INVOICE_LINE_ITEMS
+DELETE                                   NO
+
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS
+SELECT                                   NO
+
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS
+UPDATE                                   NO
+
+AP_USER                        C##AP
+INVOICE_ID_SEQ
+SELECT                                   NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AP_USER                        C##AP
+INVOICE_LINE_ITEMS
+INSERT                                   NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+ALTER                                    NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+INSERT                                   NO
+
+AP_MANAGER                     C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+GENERAL_LEDGER_ACCOUNTS
+SELECT                                   NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+FLASHBACK                                NO
+
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_MANAGER                     C##AP
+TERMS
+INSERT                                   NO
+
+AP_USER                        C##AP
+INVOICES
+SELECT                                   NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+QUERY REWRITE                            NO
+
+AP_MANAGER                     C##AP
+TERMS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+DELETE                                   NO
+
+AP_MANAGER                     C##AP
+TERMS
+SELECT                                   NO
+
+AP_MANAGER                     C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+TERMS
+UPDATE                                   NO
+
+AP_USER                        C##AP
+VENDORS
+ALTER                                    NO
+
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+AP_USER                        C##AP
+INVOICES
+INSERT                                   NO
+
+AP_MANAGER                     C##AP
+TERMS
+FLASHBACK                                NO
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+
+AP_USER                        C##AP
+VENDORS
+INSERT                                   NO
+
+AP_USER                        C##AP
+VENDORS
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+UPDATE                                   NO
+
+AP_MANAGER                     C##AP
+GENERAL_LEDGER_ACCOUNTS
+ON COMMIT REFRESH                        NO
+
+AP_MANAGER                     C##AP
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
+GENERAL_LEDGER_ACCOUNTS
+DEBUG                                    NO
+
+
+41 rows selected.
