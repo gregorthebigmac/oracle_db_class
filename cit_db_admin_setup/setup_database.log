@@ -1,0 +1,2473 @@
+>Creating users/schemas
+>Dropping users
+DROP USER c##ap CASCADE
+          *
+ERROR at line 1:
+ORA-01918: user 'C##AP' does not exist 
+
+
+DROP USER c##ex CASCADE
+          *
+ERROR at line 1:
+ORA-01918: user 'C##EX' does not exist 
+
+
+DROP USER c##om CASCADE
+          *
+ERROR at line 1:
+ORA-01918: user 'C##OM' does not exist 
+
+
+>Creating users
+
+User created.
+
+
+User created.
+
+
+User created.
+
+>Granting privileges
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+>Creating AP tables
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+>Creating OM tables
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+>Creating EX tables
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
