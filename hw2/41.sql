@@ -1,4 +1,4 @@
-connect ap/ap;
+connect c##ap/ap;
 begin
 	execute immediate 'drop user john';
 	execute immediate 'drop user jane';
@@ -12,8 +12,7 @@ begin
 	execute immediate 'drop public synonym invoice_line_items';
 	execute immediate 'drop public synonym general_ledger_accounts';
 	execute immediate 'drop public synonym terms';
-	exception when others then
-		dbms_output.put_line('');
+	exception when others then dbms_output.put_line('');
 end;
 /
 
@@ -72,13 +71,13 @@ create public synonym general_ledger_accounts for ap.general_ledger_accounts;
 create public synonym terms for ap.terms;
 
 -- require the users to change their passwords when they log in
-connect ap/ap;
+connect c##ap/ap;
 alter user john password expire;
 alter user jane password expire;
 alter user jim password expire;
 alter user joel password expire;
 
-connect ap/ap;
+connect c##ap/ap;
 grant create procedure to john;
 grant select on vendors to john;
 select * from user_sys_privs;

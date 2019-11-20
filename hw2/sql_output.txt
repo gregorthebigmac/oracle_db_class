@@ -1,4 +1,17 @@
-SQL> connect c##ap/ap
+PS C:\Users\test_user\git_repos\oracle_db_class\hw2> sqlplus.exe
+
+SQL*Plus: Release 11.2.0.1.0 Production on Wed Nov 20 06:49:35 2019
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: c##ap
+Enter password:
+
+Connected to:
+Personal Oracle Database 11g Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> connect c##ap/ap;
 Connected.
 SQL> begin
   2  execute immediate 'drop user john';
@@ -13,15 +26,12 @@ SQL> begin
  11  execute immediate 'drop public synonym invoice_line_items';
  12  execute immediate 'drop public synonym general_ledger_accounts';
  13  execute immediate 'drop public synonym terms';
- 14  exception when others then
- 15  dbms_output.put_line('');
- 16  end;
- 17  /
+ 14  exception when others then dbms_output.put_line('');
+ 15  end;
+ 16  /
 
 PL/SQL procedure successfully completed.
 
-SQL>
-SQL> -- create the roles
 SQL> create role ap_user;
 
 Role created.
@@ -34,8 +44,6 @@ SQL> create role ap_developer;
 
 Role created.
 
-SQL>
-SQL> -- grant privileges to teh ap_user role
 SQL> grant create session to ap_user;
 
 Grant succeeded.
@@ -68,15 +76,12 @@ SQL> grant select on invoice_id_seq to ap_user;
 
 Grant succeeded.
 
-SQL> grant select on vendor_id_seq to ap_user;
+SQL> grant select on vendor_id_seq to ap_user;grant ap_user to ap_manager with admin option;
+grant select on vendor_id_seq to ap_user;grant ap_user to ap_manager with admin option
+                                        *
+ERROR at line 1:
+ORA-00911: invalid character
 
-Grant succeeded.
-
-SQL>
-SQL> -- grant privileges to the ap_manager role
-SQL> grant ap_user to ap_manager with admin option;
-
-Grant succeeded.
 
 SQL> grant all on general_ledger_accounts to ap_manager;
 
@@ -86,8 +91,10 @@ SQL> grant all on terms to ap_manager;
 
 Grant succeeded.
 
-SQL>
-SQL> -- grant privileges to the ap_developer role
+SQL> grant ap_user to ap_manager with admin option;
+
+Grant succeeded.
+
 SQL> grant
   2  ap_manager,
   3  create any table,
@@ -100,8 +107,6 @@ SQL> grant
 
 Grant succeeded.
 
-SQL>
-SQL> -- create the users
 SQL> create user john identified by sesame default tablespace users;
 
 User created.
@@ -118,8 +123,10 @@ SQL> create user joel identified by sesame default tablespace users;
 
 User created.
 
-SQL>
-SQL> -- assign the users to their roles
+SQL> grant select on vendor_id_seq to ap_user;
+
+Grant succeeded.
+
 SQL> grant ap_user to john, jane;
 
 Grant succeeded.
@@ -132,8 +139,6 @@ SQL> grant ap_developer to joel;
 
 Grant succeeded.
 
-SQL>
-SQL> -- allow joel to create tables
 SQL> alter user joel quota 10M on users;
 
 User altered.
@@ -160,7 +165,23 @@ SQL> create public synonym terms for ap.terms;
 
 Synonym created.
 
+SQL> connect ap/ap;
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> alter user john password expire;
+SP2-0640: Not connected
+SQL> alter user jane password expire;
+SP2-0640: Not connected
+SQL> alter user jim password expire;
+SP2-0640: Not connected
+SQL> alter user joel password expire;
+SP2-0640: Not connected
 SQL> connect c##ap/ap
+Connected.
+SQL> connect c##ap/ap;
 Connected.
 SQL> alter user john password expire;
 
@@ -178,6 +199,8 @@ SQL> alter user joel password expire;
 
 User altered.
 
+SQL> connect c##ap/ap;
+Connected.
 SQL> grant create procedure to john;
 
 Grant succeeded.
@@ -855,7 +878,7 @@ AP_USER                        C##AP
 TERMS
 SELECT                                   NO
 
-AP_USER                        C##AP
+AP_MANAGER                     C##AP
 
 ROLE                           OWNER
 ------------------------------ ------------------------------
@@ -863,27 +886,27 @@ TABLE_NAME                     COLUMN_NAME
 ------------------------------ ------------------------------
 PRIVILEGE                                GRA
 ---------------------------------------- ---
-VENDOR_ID_SEQ
-SELECT                                   NO
-
-AP_MANAGER                     C##AP
 GENERAL_LEDGER_ACCOUNTS
 UPDATE                                   NO
 
-
-ROLE                           OWNER
------------------------------- ------------------------------
-TABLE_NAME                     COLUMN_NAME
------------------------------- ------------------------------
-PRIVILEGE                                GRA
----------------------------------------- ---
 AP_MANAGER                     C##AP
 TERMS
 ALTER                                    NO
 
+
+ROLE                           OWNER
+------------------------------ ------------------------------
+TABLE_NAME                     COLUMN_NAME
+------------------------------ ------------------------------
+PRIVILEGE                                GRA
+---------------------------------------- ---
 AP_MANAGER                     C##AP
 TERMS
 DEBUG                                    NO
+
+AP_USER                        C##AP
+VENDOR_ID_SEQ
+SELECT                                   NO
 
 ROLE                           OWNER
 ------------------------------ ------------------------------
@@ -1148,3 +1171,5 @@ DEBUG                                    NO
 
 
 41 rows selected.
+
+SQL>
