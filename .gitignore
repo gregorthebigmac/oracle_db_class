@@ -1,0 +1,5 @@
+# ignore images
+*.png
+
+# ignore m$ binaries
+*.docx

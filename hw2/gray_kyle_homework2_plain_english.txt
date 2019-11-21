@@ -1,0 +1,86 @@
+--connects to the database using this user/password combo.
+connect ap/ap;
+
+--the "begin" command encloses a series of Transact-SQL statements that will execute as a group. BEGIN...END blocks can be nested.
+begin
+
+	--the "execute immediate" command is typically used when you have dynamic commands (usually involving variables) where you don't know what data will be used at the time of execution.
+	execute immediate 'drop user john';			--in this case, we have no variables, we are simply dropping the user 'john' which means he no longer has access to the database which is currently in context/scope.
+	execute immediate 'drop user jane';			--dropping user 'jane'
+	execute immediate 'drop user jim';			--dropping user 'jim'
+	execute immediate 'drop user joel cascade';	--dropping user 'joel' with a cascade option. Normally, dropping a user does NOT drop all objects the user owns, it simply removes them from the permissions of the object. using the "cascade" option drops the user AS WELL AS all the objects the user owned.
+	execute immediate 'drop role ap_user';			--drop an entire role (which can be thought of as a user group permission set) from the database. In this case, dropping role 'ap_user'
+	execute immediate 'drop role ap_manager';		--dropping role 'ap_manager'
+	execute immediate 'drop role ap_developer';		--dropping role 'ap_developer'
+	execute immediate 'drop public synonym vendors';					--dropping synonym 'vendors'. synonyms are just like aliases in the Linux BASH shell. It creates an alternate name for another thing.
+	execute immediate 'drop public synonym invoices';					--dropping synonym 'invoices'
+	execute immediate 'drop public synonym invoice_line_items';			--dropping synonym 'invoice_line_items'
+	execute immediate 'drop public synonym general_ledger_accounts';	--dropping synonym 'general_ledger_accounts'
+	execute immediate 'drop public synonym terms';						--dropping synonym 'terms'
+	exception when others then		--exception statements are for like having an 'else' statement inside of a begin-end sequence. It creates a default behavior when any of the individual statements inside the begin-end sequence fail.
+		dbms_output.put_line('');	--this is the default behavior mentioned previously. The DBMS_OUTPUT package enables you to send messages from stored procedures and packages.
+end;	--this is the syntax to end the "begin" sequence
+/	--this is required to terminate the "begin-end" sequence
+
+create role ap_user;		--creates a role for one or more users. privileges granted to this role will also be given to all users designated with this role.
+create role ap_manager;		--creates the role 'ap_manager'
+create role ap_developer;	--creates the role 'ap_developer'
+
+grant create session to ap_user;	--grants the privilege to create sessions for an entire role of users.
+grant create public synonym to ap_user;	--grants the privilege on create public synonyms to the ap_user role.
+grant all on vendors to ap_user;	--grants ALL privileges to the role ap_user
+grant select, insert, update, delete on invoices to ap_user;	--grants the privileges of select, insert, update, delete on the invoices table to the ap_user role
+grant select, insert, update, delete on invoice_line_items to ap_user;	--grants the same privileges on the invoice_line_items table to the ap_user role
+grant select on general_ledger_accounts to ap_user;	--grants the select privilege on the general_ledger_accounts table to the ap_user role
+grant select on terms to ap_user;	--grants the select privilege on the terms table to the ap_user role
+grant select on invoice_id_seq to ap_user;	--grants the select privilege on the invoice_id_seq table to the ap_user role
+grant select on vendor_id_seq to ap_user;	--grants the select privilege on the vendor_id_seq table to the ap_user role
+
+grant ap_user to ap_manager with admin option;	--this grants the privileges of the role of ap_user to the role of ap_manager and adds the ability to grant this role to others 
+grant all on general_ledger_accounts to ap_manager;		--grants all privileges on the general_ledger_accounts table to the ap_manager role
+grant all on terms to ap_manager;	--grants all privileges on the terms table to the ap_manager role
+
+grant 	--this is a nice way of saving yourself some typing by saying "everything between "grant" and "to" will be granted to the user that follows "to"
+	ap_manager,
+	create any table,
+	drop any table,
+	create any view,
+	drop any view,
+	create any sequence,
+	drop any sequence
+to ap_developer;
+
+create user john identified by sesame default tablespace users;	--creates a user named "john" with the password "sesame" who has access to the "users" tablespace
+create user jane identified by sesame default tablespace users;	--does the same for a user named "jane"
+create user jim identified by sesame default tablespace users;	--does the same for a user named "jim"
+create user joel identified by sesame default tablespace users;	--does the same for a user named "joel"
+
+grant ap_user to john, jane;	--adding john to the role of ap_user
+grant ap_manager to jim;		--adding jim to role ap_manager
+grant ap_developer to joel;		--adding joel to role ap_developer
+
+alter user joel quota 10M on users;	--allow joel to create tables
+
+
+connect joel/sesame;	--connect as joel with password 'sesame'
+create public synonym vendors for ap.vendors;									--adds a synonym for ap.vendors called "vendors"
+create public synonym invoices for ap.invoices;									--adds a synonym for ap.invoices called "invoices"
+create public synonym invoice_line_items for ap.invoice_line_items;				--adds a synonym for ap.invoice_line_items called "invoice_line_items"
+create public synonym general_ledger_accounts for ap.general_ledger_accounts;	--adds a synonym for ap.general_ledger_accounts called "general_ledger_accounts"
+create public synonym terms for ap.terms;										--adds a synonym for ap.terms called "terms"
+
+--require the users to change their passwords when they log in
+connect ap/ap;	--connects to the database with the username/password combo of ap/ap
+alter user john password expire;	--allows the user 'john' to login once with his preset password before requiring him to change his password.
+alter user jane password expire;	--does the same for the user 'jane'
+alter user jim password expire;		--does the same for the user 'jim'
+alter user joel password expire;	--does the same for the user 'joel'
+
+connect ap/ap;	--connects to the database with the username/password combo of ap/ap
+grant create procedure to john;		--grants the "create" privilege to the user 'john'
+grant select on vendors to john;	--grants the "select" privilege on the table "vendors" to the user 'john'
+select * from user_sys_privs;	--displays all rows in the table user_sys_privs
+select * from user_tab_privs;	--displays all rows in the table user_tab_privs
+select * from user_role_privs;	--displays all rows in the table user_role_privs
+select * from role_sys_privs;	--displays all rows in the table role_sys_privs
+select * from role_tab_privs;	--displays all rows in the table role_tab_privs
