@@ -25,9 +25,36 @@ read username
 
 echo "Creating users..."
 if mysql -u "$username" -p < mysql_scripts/create_users.sql; then
-	echo "Creating users...[DONE]"
+	echo "Creating users...[OK]"
 else
+	echo "Creating users...[FAIL]"
 	echo "ERROR: mysql_scripts/create_users.sql Failed. Check the logs."
 	exit 1
 fi
 
+echo "Creating AP Tables..."
+if mysql -u "$username" -p < mysql_scripts/create_ap_tables.sql; then
+	echo "Creating AP Tables...[OK]"
+else
+	echo "Creating AP Tables...[FAIL]"
+	echo "ERROR: mysql_scripts/create_ap_tables.sql Failed. Check the logs."
+	exit 2
+fi
+
+echo "Creating OM Tables..."
+if mysql -u "$username" -p < mysql_scripts/create_om_tables.sql; then
+	echo "Creating OM Tables...[OK]"
+else
+	echo "Creating OM Tables...[FAIL]"
+	echo "ERROR: mysql_scripts/create_om_tables.sql Failed. Check the logs."
+	exit 3
+fi
+
+echo "Creating EX Tables..."
+if mysql -u "$username" -p < mysql_scripts/create_ex_tables.sql; then
+	echo "Creating EX Tables...[OK]"
+else
+	echo "Creating EX Tables...[FAIL]"
+	echo "ERROR: mysql_scripts/create_ex_tables.sql Failed. Check the logs."
+	exit 4
+fi
