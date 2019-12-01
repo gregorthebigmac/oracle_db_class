@@ -1,5 +1,5 @@
 tee logs/;
-connect c##ap/ap;
+connect amazon_db;
 
 -- Use an anonymous PL/SQL script to drop all tables and sequences in the
 -- schema and suppress any error messages that may be displayed if these objects

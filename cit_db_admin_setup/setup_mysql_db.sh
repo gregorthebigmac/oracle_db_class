@@ -11,7 +11,7 @@ if [ -f "$log_file" ]; then
 	mv "$log_file" "$log_file.old"
 fi
 
-touch "working_dir/logs/db_setup.log"
+touch "$working_dir/logs/db_setup.log"
 
 echo "During this setup, everything will be recorded in a log file located in"
 echo "$log_file"
