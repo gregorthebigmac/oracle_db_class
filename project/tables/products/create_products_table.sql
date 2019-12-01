@@ -1,4 +1,7 @@
-/* NOTE: varchar2 is SPECIFIC TO ORACLE DB and will not work in MySQL */
+/* NOTE: varchar2 is SPECIFIC TO ORACLE DB and will not work in MySQL!
+	varhcar(int size) works on both, but the max size compatible with both is
+	only 4000.
+*/
 connect amazon_db;
 create table product_test (
 	product_id			int primary key,

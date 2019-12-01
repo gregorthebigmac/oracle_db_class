@@ -13,17 +13,17 @@ grant select on amazon_db.* to
 	junior_dba@localhost,
 	senior_dba@localhost;
 
-grant insert on amazon_db.* to
+grant insert, update on amazon_db.* to
 	junior_dba@localhost,
 	senior_dba@localhost;
 
 grant delete on amazon_db.* to senior_dba@localhost;
 
 drop user if exists
-	lskywalker@localhost,
+	chewbacca@localhost,
 	hsolo@localhost,
-	aackbar@localhost;
+	jabba@localhost;
 
-create user if not exists lskywalker@localhost identified by '123' default role intern@localhost;
+create user if not exists chewbacca@localhost identified by '123' default role intern@localhost;
 create user if not exists hsolo@localhost identified by '123' default role junior_dba@localhost;
-create user if not exists aackbar@localhost identified by '123' default role senior_dba@localhost;
+create user if not exists jabba@localhost identified by '123' default role senior_dba@localhost;

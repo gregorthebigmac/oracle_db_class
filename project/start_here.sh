@@ -24,6 +24,8 @@ read username
 echo -n "MySQL password: "
 read -s password
 echo "Creating users and roles..."
+# you'll notice NO space between -p and "$password" this is not a typo!
+# This is the only way it works!
 if mysql -u "$username" -p"$password" < users/create_users.sql; then
 	echo "Creating users and roles...[OK]"
 else
