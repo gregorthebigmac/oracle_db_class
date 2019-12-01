@@ -1,31 +1,29 @@
-drop role if exists intern@localhost;
-drop role if exists junior_dba@localhost;
-drop role if exists senior_dba@localhost;
+drop role if exists
+	intern@localhost,
+	junior_dba@localhost,
+	senior_dba@localhost;
 
-create role if not exists intern@localhost;
-create role if not exists junior_dba@localhost;
-create role if not exists senior_dba@localhost;
+create role if not exists
+	intern@localhost,
+	junior_dba@localhost,
+	senior_dba@localhost;
 
-drop user if exists cust_intern@localhost;
-drop user if exists sale_intern@localhost;
-drop user if exists prod_intern@localhost;
+grant select on amazon_db.* to
+	intern@localhost,
+	junior_dba@localhost,
+	senior_dba@localhost;
 
-drop user if exists cust_junior_dba@localhost;
-drop user if exists sale_junior_dba@localhost;
-drop user if exists prod_junior_dba@localhost;
+grant insert on amazon_db.* to
+	junior_dba@localhost,
+	senior_dba@localhost;
 
-drop user if exists cust_senior_dba@localhost;
-drop user if exists sale_senior_dba@localhost;
-drop user if exists prod_senior_dba@localhost;
+grant delete on amazon_db.* to senior_dba@localhost;
 
-create user if not exists cust_intern@localhost role intern identified by '123';
-create user if not exists sale_intern@localhost role intern identified by '123';
-create user if not exists prod_intern@localhost role intern identified by '123';
+drop user if exists
+	lskywalker@localhost,
+	hsolo@localhost,
+	aackbar@localhost;
 
-create user if not exists cust_junior_dba@localhost role junior_dba identified by '123';
-create user if not exists sale_junior_dba@localhost role junior_dba identified by '123';
-create user if not exists prod_senior_dba@localhost role junior_dba identified by '123';
-
-create user if not exists cust_senior_dba@localhost role senior_dba identified by '123';
-create user if not exists cust_senior_dba@localhost role senior_dba identified by '123';
-create user if not exists prod_senior_dba@localhost role senior_dba identified by '123';
+create user if not exists lskywalker@localhost identified by '123' default role intern@localhost;
+create user if not exists hsolo@localhost identified by '123' default role junior_dba@localhost;
+create user if not exists aackbar@localhost identified by '123' default role senior_dba@localhost;

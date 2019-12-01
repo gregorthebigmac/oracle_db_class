@@ -23,41 +23,47 @@ echo "need to enter your password if prompted, however."
 echo -n "MySQL username: "
 read username
 
+echo "Creating users and roles..."
+if mysql -u "$username" -p < users/create_users.sql; then
+	echo "Creating users and roles...[OK]"
+else
+	echo "Creating users and roles...[FAIL]"
+	echo "ERROR: $working_dir/users/create_users.sql Failed. Check the logs."
+	exit 1
+fi
+
 echo "Creating database..."
 if mysql -u "$username" -p < database/create_database.sql; then
 	echo "Creating database...[OK]"
 else
 	echo "Creating database...[FAIL]"
-	echo "ERROR: database/create_database.sql Failed. Check the logs."
-	exit 1
+	echo "ERROR: $working_dir/database/create_database.sql Failed. Check the logs."
+	exit 2
 fi
 
-echo "Creating users and user roles..."
-
-
 echo "Creating customers table..."
-if mysql -u "$username" -p < mysql_scripts/create_customers_table.sql; then
+if mysql -u "$username" -p < tables/customers/create_customers_table.sql; then
 	echo "Creating customers table...[OK]"
 else
 	echo "Creating customers table...[FAIL]"
-	echo "ERROR: mysql_scripts/create_customers_table.sql Failed. Check the logs."
-	exit 2
+	echo "ERROR: $working_dir/tables/customers/create_customers_table.sql Failed. Check the logs."
+	exit 3
 fi
 
 echo "Creating products table..."
-if mysql -u "$username" -p < mysql_scripts/create_products_table.sql; then
+if mysql -u "$username" -p < tables/products/create_products_table.sql; then
 	echo "Creating products table...[OK]"
 else
 	echo "Creating products table...[FAIL]"
-	echo "ERROR: mysql_scripts/create_products_table.sql Failed. Check the logs."
-	exit 2
+	echo "ERROR: $working_dir/tables/products/create_products_table.sql Failed. Check the logs."
+	exit 4
 fi
 
 echo "Creating sales table..."
-if mysql -u "$username" -p < mysql_scripts/create_sales_table.sql; then
+if mysql -u "$username" -p < tables/sales/create_sales_table.sql; then
 	echo "Creating sales table...[OK]"
 else
 	echo "Creating sales table...[FAIL]"
-	echo "ERROR: mysql_scripts/create_sales_table.sql Failed. Check the logs."
+	echo "ERROR: $working_dir/tables/sales/create_sales_table.sql Failed. Check the logs."
 	exit 3
 fi
