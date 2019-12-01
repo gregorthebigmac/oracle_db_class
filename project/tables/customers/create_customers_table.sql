@@ -55,3 +55,11 @@ insert into customer_test values (
 	'590',
 	'Bendover69@compuserve.com'
 );
+
+CREATE SEQUENCE qty_seq
+    START WITH 1   INCREMENT BY 1
+    MINVALUE 0   MAXVALUE 99999
+    CYCLE CACHE 10 ORDER;
+    
+    INSERT INTO product_test VALUES (test_seq.nextVal, 'generic_item',5, 5, 5,5,5,null,null,null,null,null,null,null,null,null,null,null, null);
+    
