@@ -1,19 +1,22 @@
 tee logs/db_setup.log;	-- this is the MySQL equivalent to 'spool'
 
 -- remove old users if they exist (does not check, just does it)
-drop user c##ap cascade;
-drop user c##ex cascade;
-drop user c##om cascade;
+drop user if exists ap@localhost;
+drop user if exists ex@localhost;
+drop user if exists om@localhost;
+
+-- creates tablespace 'users'
+-- create tablespace users;
 
 -- creates users
-create user c##ap identified by ap default tablespace users;
-create user c##ex identified by ex default tablespace users;
-create user c##om identified by om default tablespace users;
+create user ap@localhost identified by 'ap';
+create user ex@localhost identified by 'ex';
+create user om@localhost identified by 'om';
 
 -- granting all privileges to all created users
-grant all privileges to c##ap;
-grant all privileges to c##ex;
-grant all privileges to c##om;
+grant all privileges to 'ap';
+grant all privileges to 'ex';
+grant all privileges to 'om';
 
 notee;	-- this is the MySQL equivalent to spool off
 exit;
