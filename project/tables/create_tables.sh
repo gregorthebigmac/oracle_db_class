@@ -23,13 +23,25 @@ echo "need to enter your password if prompted, however."
 echo -n "MySQL username: "
 read username
 
+echo "Creating database..."
+if mysql -u "$username" -p < database/create_database.sql; then
+	echo "Creating database...[OK]"
+else
+	echo "Creating database...[FAIL]"
+	echo "ERROR: database/create_database.sql Failed. Check the logs."
+	exit 1
+fi
+
+echo "Creating users and user roles..."
+
+
 echo "Creating customers table..."
 if mysql -u "$username" -p < mysql_scripts/create_customers_table.sql; then
 	echo "Creating customers table...[OK]"
 else
 	echo "Creating customers table...[FAIL]"
 	echo "ERROR: mysql_scripts/create_customers_table.sql Failed. Check the logs."
-	exit 1
+	exit 2
 fi
 
 echo "Creating products table..."
