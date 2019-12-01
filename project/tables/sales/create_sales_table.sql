@@ -26,17 +26,9 @@ insert into sales_test values (
 	'1',
 	'4',
 	'5',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	NULL, NULL, NULL, NULL,
 	'22.34',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	NULL, NULL, NULL, NULL, NULL, NULL
 );
 
 insert into sales_test values (
@@ -46,14 +38,7 @@ insert into sales_test values (
 	'16',
 	'9',
 	'8',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
+	NULL, NULL, NULL, NULL,
 	'32.42',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL);
+	NULL, NULL, NULL, NULL, NULL, NULL
+);

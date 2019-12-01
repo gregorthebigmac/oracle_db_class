@@ -2,7 +2,7 @@
 connect amazon_db;
 create table product_test (
 	product_id			int primary key,
-	item_description	varchar(10000) not null,
+	item_description	varchar(4000) not null,
 	item_price 			decimal(19,4) not null,
 	item_shipping		decimal(19,4),
 	item_specs 			varchar(1000),
