@@ -1,34 +1,56 @@
-drop role if exists
-	intern,
-	junior_dba,
-	senior_dba;
+drop role intern;
+drop role junior_dba;
+drop role senior_dba;
 
-create role if not exists
-	intern,
-	junior_dba,
-	senior_dba;
+create role intern;
+create role junior_dba;
+create role senior_dba; 
 
-grant create session on amazon_db.* to
-	intern,
-	junior_dba,
-	senior_dba;
+grant select on customer_test to intern;
+grant create session to intern;
 
-grant select on amazon_db.* to
-	intern,
-	junior_dba,
-	senior_dba;
+grant select on customer_test to junior_dba;
+grant create session to junior_dba;
+grant insert on customer_test to junior_dba;
+grant update on customer_test to junior_dba;
 
-grant insert, update on amazon_db.* to
-	junior_dba,
-	senior_dba;
+grant select on customer_test to intern;
+grant create session to intern;
 
-grant delete on amazon_db.* to senior_dba;
+grant select on customer_test to senior_dba;
+grant create session to senior_dba;
+grant insert on customer_test to senior_dba;
+grant update on customer_test to senior_dba;
+grant delete on customer_test to senior_dba;
 
-drop user if exists
-	chewbacca,
-	hsolo,
-	jabba;
+drop role intern;
+drop role junior_dba;
+drop role senior_dba;
 
-create user if not exists chewbacca identified by '123' default role intern;
-create user if not exists hsolo identified by '123' default role junior_dba;
-create user if not exists jabba identified by '123' default role senior_dba;
+grant select on customer_test to intern;
+grant create session to intern;
+
+grant select on customer_test to junior_dba;
+grant create session to junior_dba;
+grant insert on customer_test to junior_dba;
+grant update on customer_test to junior_dba;
+
+grant select on customer_test to intern;
+grant create session to intern;
+
+grant select on customer_test to senior_dba;
+grant create session to senior_dba;
+grant insert on customer_test to senior_dba;
+grant update on customer_test to senior_dba;
+grant delete on customer_test to senior_dba;
+
+
+create user  chewbacca identified by passwordispassword;
+grant intern to chewbacca;
+
+create user  hsolo identified by passwordisurmum;
+grant junior_dba to hsolo;
+
+create user  jabba identified by hanshotfirst;
+grant senior_dba to jabba;
+
