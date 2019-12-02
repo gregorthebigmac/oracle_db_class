@@ -1,5 +1,5 @@
 connect amazon_db;
-create table sales_test (
+create table sales (
 	product_id 					int primary key,
 	qty_sold 					int,
 	revenue_from_product		decimal(19,4),
@@ -19,26 +19,11 @@ create table sales_test (
 	sim_product_after_viewing_6 int references product_test(product_id)
 );
 
-insert into sales_test values (
-	'4',
-	'1',
-	'49.99',
-	'1',
-	'4',
-	'5',
-	NULL, NULL, NULL, NULL,
-	'22.34',
-	NULL, NULL, NULL, NULL, NULL, NULL
-);
+create sequence sales_seq
+	start with 1
+	increment by 1
+	minvalue 1 		maxvalue 99999
+	cycle cache 10 order;
 
-insert into sales_test values (
-	'8',
-	'1',
-	'99.99',
-	'16',
-	'9',
-	'8',
-	NULL, NULL, NULL, NULL,
-	'32.42',
-	NULL, NULL, NULL, NULL, NULL, NULL
-);
+insert into sales values (sales_seq.nextVal, '1', '49.99', '1', '4', '5', NULL, NULL, NULL, NULL, '22.34', NULL, NULL, NULL, NULL, NULL, NULL);
+insert into sales values (sales_seq.nextVal, '1', '99.99', '16', '9', '8', NULL, NULL, NULL, NULL, '32.42', NULL, NULL, NULL, NULL, NULL, NULL);
