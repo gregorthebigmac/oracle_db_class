@@ -56,6 +56,28 @@ insert into customer_test values (
 	'Bendover69@compuserve.com'
 );
 
+insert into customer_test values (
+	'3',
+	'Alex',
+	'Trebeck',
+	'alext15@gmail.com',
+	'708-555-5555',
+	'8563',
+	'7C',
+	'Normal',
+	'Chicago',
+	'IL',
+	'60807',
+	'USA',
+	'854-8y9h8uw9pg4shieghi;ty8e4',
+	'1234567890123456',
+	'984',
+	'alext15@hotmail.com'
+);
+
+
+
+
 CREATE SEQUENCE qty_seq
     START WITH 1   INCREMENT BY 1
     MINVALUE 0   MAXVALUE 99999
