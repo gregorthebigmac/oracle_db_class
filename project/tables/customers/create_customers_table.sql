@@ -24,7 +24,15 @@ create sequence cust_id_seq
 	minvalue 0
 	maxvalue 99999
 	cycle cache 10 order;
-
+<<<<<<< HEAD
 insert into customers values (cust_id_seq.nextVal, 'generic_item',5, 5, 5,5,5,null,null,null,null,null,null,null,null,null,null,null, null);
 insert into customers values (cust_id_seq.nextVal, 'Ben', 'Dover', 'bendover69@gmail.com', '223-575-5354', '4578', '9A', 'Artesian', 'Chicago', 'IL', '6032', 'USA', 'gqpoihoep95w8gsgoihtroewa987alsoigoewirhglusa', '1234567890123456', '590', 'Bendover69@compuserve.com');
 insert into customers values (cust_id_seq.nextVal, 'John', 'Jackson', '12345@gmail.com', '312-555-5654', '1232', '5B', 'Carpenter', 'Chicago', 'IL', '60007', 'USA', 'po3-8y9h8uw9pg4shieghi;ty8e4', '1234567890123456', '324', 'jjackson32@hotmail.com');
+insert into customers values (cust_id_seq.nextVal, 'Alex', 'Trebeck', 'alext15@gmail.com', '708-555-5555', '8563', '7C', 'Normal', 'Chicago', 'IL', '60807', 'USA', '854-8y9h8uw9pg4shieghi;ty8e4', '1234567890123456', '984', 'alext15@hotmail.com');
+=======
+
+
+
+
+    
+>>>>>>> f7c248be91e4c1d4485743b841e54696d687f127
